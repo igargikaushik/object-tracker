@@ -58,7 +58,7 @@ class GlobalTracker(object):
                 unmatched_detections.append(d)
 
         matches = []
-
+        
         # for creating trackers we consider any detection with an
         # overlap less than iou_thrd to signifiy the existence of
         # an untracked object
@@ -78,7 +78,8 @@ class GlobalTracker(object):
         return matches, np.array(unmatched_detections), np.array(unmatched_trackers)
 
 
-    def pipeline(self, boxes,scores,classes,img, iou_threshold = 0.3, FaceTracker = False):
+    def pipeline(self, boxes,scores,classes,img, iou_threshold = 0.3, FaceTracker = False,
+                return_tracker_id = False):
         """pipeline function for detection and tracking
 
         Args:
@@ -87,7 +88,8 @@ class GlobalTracker(object):
             classes: Class index.
             img: Input image
             iou_threshold: Detection overlap threshold
-            
+            return_tracker_id: If enabled, will return the tracker id. Used for compatibility for older versions
+            of our code.
 
         Returns:
             o_boxes: Tracked bounding boxes. Size (N)
