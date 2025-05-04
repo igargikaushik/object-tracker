@@ -46,6 +46,7 @@ while True:
 ### changes from [org. vehicle detection and tracking repo](https://github.com/kcg2015/Vehicle-Detection-and-Tracking).
 - detector.py: able to detect all classes above a threshold 'score_thresh' (default value of 0.3) defined in 'get_localization'.
           The get_localization function also returns an 'idx_vector' containing an array of indices for which the localization process is detected. This is useful for mapping the bounding boxes to it's corresponding classes and scores so it can be plotted on the image.
-  -renamed 'main.py' to 'main_tracker' and made it into a class named 'GlobalTracker()'/ can call this directly.
+    - renamed 'main.py' to 'main_tracker' and made it into a class named 'GlobalTracker()'/ can call this directly.
     - added a input argument to pass the maximum number of trackings that can be performed at any given time. with 'MAX_TRACKERS'
-    - modified the 'pipeline' function to return an array of [_boxes, out_scores_arr, out_classes_arr, img]      
+    - modified the 'pipeline' function to return an array of [_boxes, out_scores_arr, out_classes_arr, img]  
+      
