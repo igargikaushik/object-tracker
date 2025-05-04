@@ -168,6 +168,8 @@ class GlobalTracker(object):
         out_boxes = []
         out_scores = []
         out_classes = []
+        out_trk_id = []
+
 
 
         for trk in self.tracker_list:
@@ -180,6 +182,8 @@ class GlobalTracker(object):
                 out_boxes.append(bounding_boxes)
                 out_scores.append(trk.class_scores)
                 out_classes.append(trk.class_labels)
+                out_trk_id.append(trk.id)
+
 
 
         # Book keeping
@@ -197,6 +201,8 @@ class GlobalTracker(object):
         out_boxes_arr = np.asarray(out_boxes)
         out_scores_arr = np.asarray(out_scores)
         out_classes_arr = np.asarray(out_classes)
+        out_trk_id_list = list(out_trk_id)
+
 
         # Normalize the box values.  copy to new array to prevent overwriting the old one.
         if out_boxes_arr.size > 0: # Check to ensure array isn't empty.
@@ -209,5 +215,7 @@ class GlobalTracker(object):
             o_boxes = np.asarray([]) # Return an empty array
 
         #   return 'o_boxes' rather than 'out_boxes'
-        return o_boxes, out_scores_arr, out_classes_arr, img
-
+        if return_tracker_id:
+            return out_trk_id_list, o_boxes, out_scores_arr, out_classes_arr, img
+        else:
+            return o_boxes, out_scores_arr, out_classes_arr, img
